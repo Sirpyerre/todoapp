@@ -19,11 +19,6 @@ return [
         'driver_options' => [
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
         ],
-//        'database' => 'todos_app',
-//        'username' => 'peter',
-//        'password' => 'g00r007ar',
-//        'hostname' => 'localhost',
-//        'charset' => 'utf8'
     ],
     'service-manager' => [
         'factories' => [

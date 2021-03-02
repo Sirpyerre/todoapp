@@ -41,18 +41,21 @@ class TaskTable
 
     public function saveTask(Task $task)
     {
+        $now = new \DateTime();
         $data = [
             'title' => $task->title,
             'description' => $task->description,
-            'creation_date' => $task->creationDate,
+            'creation_date' => $now->format('Y-m-d H:i:s'),
             'finish_date' => $task->finishDate,
-            'finished' => $task->finished
+            'finished' => 0
         ];
 
+//        dd($data);
         $id = (int) $task->id;
 
         if ($id === 0 ) {
             $this->tableGateway->insert($data);
+            return;
         }
 
         try {
