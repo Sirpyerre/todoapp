@@ -13,5 +13,21 @@
  */
 
 return [
-    // ...
+    'db' => [
+        'driver' => 'Pdo_Mysql',
+        'dsn' => 'mysql:dbname=todos_app;host=localhost;charset=utf8',
+        'driver_options' => [
+            PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
+        ],
+//        'database' => 'todos_app',
+//        'username' => 'peter',
+//        'password' => 'g00r007ar',
+//        'hostname' => 'localhost',
+//        'charset' => 'utf8'
+    ],
+    'service-manager' => [
+        'factories' => [
+            'Laminas\Db\Adapter\Adapter' => 'Laminas\Db\Adapter\AdapterServiceFactory'
+        ]
+    ]
 ];

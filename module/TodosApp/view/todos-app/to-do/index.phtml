@@ -1,3 +1,27 @@
-<h1>Hola desde el modulo To Do App!</h1>
+<h1>Todas las tareas</h1>
 
-<p>You said "<?php echo $this->escapeHtml($message) ?>".</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Titulo</th>
+            <th>Fecha de creación</th>
+            <th>Fecha de finalización</th>
+            <th>Completada</th>
+            <th>Operaciones</th>
+        </tr>
+    </thead>
+<?php foreach ($tasks as $task) : ?>
+
+    <tr>
+        <td><?= $this->escapeHtml($task->title) ?></td>
+        <td><?= $this->escapeHtml($task->creationDate) ?></td>
+        <td><?= $this->escapeHtml($task->finishDate) ?></td>
+        <td><?= $task->finished ? 'Si' : 'No'?></td>
+        <td>
+            Editar <br>
+            Ver <br>
+            Eliminar <br>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</table>

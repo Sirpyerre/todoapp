@@ -2,10 +2,8 @@
 /**
  * @author Pedro Rojas <pedro.rojas@gmail.com>
  */
-
 namespace TodosApp;
 
-use Laminas\ServiceManager\Factory\InvokableFactory;
 use TodosApp\Controller\ToDoController;
 
 return [
@@ -35,7 +33,10 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            ToDoController::class => InvokableFactory::class
+            ToDoController::class => function ($sm) {
+                $taskService = $sm->get(Model\TaskTable::class);
+                return new ToDoController($taskService);
+            }
         ]
     ],
     'view_manager' => [

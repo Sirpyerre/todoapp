@@ -6,13 +6,22 @@
 namespace TodosApp\Controller;
 
 use Laminas\View\Model\ViewModel;
+use TodosApp\Model\TaskTable;
 
 class ToDoController extends \Laminas\Mvc\Controller\AbstractActionController
 {
+    /** @var TaskTable */
+    private $table;
+
+    public function __construct($table)
+    {
+        $this->table = $table;
+    }
+
     public function indexAction(): ViewModel
     {
-        $message = $this->params()->fromQuery('message', 'foo');
-        return new ViewModel(['message' => $message]);
+        $tasks = $this->table->fetchAll();
+        return new ViewModel(['tasks' => $tasks]);
     }
 
     public function createAction(): ViewModel
