@@ -2,8 +2,10 @@
 /**
  * @author Pedro Rojas <pedro.rojas@gmail.com>
  */
+
 namespace TodosApp;
 
+use Laminas\Router\Http\Segment;
 use TodosApp\Controller\ToDoController;
 
 return [
@@ -26,6 +28,19 @@ return [
                     'defaults' => [
                         'controller' => ToDoController::class,
                         'action' => 'create'
+                    ]
+                ]
+            ],
+            'todo-app-show' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route' => '/todos-app/show/:id',
+                    'defaults' => [
+                        'controller' => ToDoController::class,
+                        'action' => 'show'
+                    ],
+                    'constraints' => [
+                        'id' => '[1-9]\d*'
                     ]
                 ]
             ]

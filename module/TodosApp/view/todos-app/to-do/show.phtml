@@ -1,1 +1,18 @@
-Esta es la task #
+<h1>Detalles de la task # <?= $task->id ?></h1>
+
+<div class="card w-75">
+    <div class="card-header">
+        <h4><?= $task->title ?></h4>
+        <p>
+            <small class="text-muted">Creada <?= $task->creationDate ?></small>
+        </p>
+    </div>
+    <div class="card-body">
+        <p class="card-text">
+            <?= $task->description ?>
+        </p>
+        <?php if ($task->finished === 0): ?>
+            <a href="#" class="btn btn-primary">Marcar como terminada</a>
+        <?php endif; ?>
+    </div>
+</div>

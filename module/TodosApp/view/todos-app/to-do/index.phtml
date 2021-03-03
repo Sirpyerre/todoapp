@@ -18,8 +18,10 @@
         <td><?= $this->escapeHtml($task->finishDate) ?></td>
         <td><?= $task->finished ? 'Si' : 'No'?></td>
         <td>
+            <a class="btn btn-info btn-sm" href="<?=$this->url('todo-app-show', ['id' => $task->id])?>">
+                Ver
+            </a>
             Editar <br>
-            Ver <br>
             Eliminar <br>
         </td>
     </tr>

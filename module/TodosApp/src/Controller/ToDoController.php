@@ -68,7 +68,7 @@ class ToDoController extends \Laminas\Mvc\Controller\AbstractActionController
             return $this->redirect()->toRoute('todos-app-index');
         }
 
-
+        return new ViewModel(['task' => $task]);
     }
 
     public function editAction()
