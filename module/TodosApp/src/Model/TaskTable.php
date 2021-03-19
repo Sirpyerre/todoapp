@@ -5,7 +5,6 @@
 
 namespace TodosApp\Model;
 
-
 use Laminas\Db\TableGateway\TableGatewayInterface;
 use RuntimeException;
 
@@ -50,7 +49,6 @@ class TaskTable
             'finished' => 0
         ];
 
-//        dd($data);
         $id = (int) $task->id;
 
         if ($id === 0 ) {

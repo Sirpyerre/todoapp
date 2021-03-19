@@ -11,47 +11,20 @@ use TodosApp\Controller\ToDoController;
 return [
     'router' => [
         'routes' => [
-            'todos-app-index' => [
-                'type' => 'Literal',
+            'todo-app' => [
+                'type' => Segment::class,
                 'options' => [
-                    'route' => '/todos-app/index',
+                    'route' => '/todos-app[/:action[/:id]]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[1-9]\d*',
+                    ],
                     'defaults' => [
                         'controller' => ToDoController::class,
                         'action' => 'index'
-                    ]
-                ]
-            ],
-            'todo-app-create' => [
-                'type' => 'Literal',
-                'options' => [
-                    'route' => '/todos-app/create',
-                    'defaults' => [
-                        'controller' => ToDoController::class,
-                        'action' => 'create'
-                    ]
-                ]
-            ],
-            'todo-app-show' => [
-                'type' => Segment::class,
-                'options' => [
-                    'route' => '/todos-app/show/:id',
-                    'defaults' => [
-                        'controller' => ToDoController::class,
-                        'action' => 'show'
                     ],
-                    'constraints' => [
-                        'id' => '[1-9]\d*'
-                    ]
                 ]
             ]
-        ]
-    ],
-    'controllers' => [
-        'factories' => [
-            ToDoController::class => function ($sm) {
-                $taskService = $sm->get(Model\TaskTable::class);
-                return new ToDoController($taskService);
-            }
         ]
     ],
     'view_manager' => [

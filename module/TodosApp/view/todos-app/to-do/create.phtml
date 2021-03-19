@@ -15,7 +15,7 @@ $description->setAttribute('placeholder', 'Descripción');
 $submit = $form->get('submit');
 $submit->setAttribute('class', 'btn btn-primary');
 
-$form->setAttribute('action', $this->url('todo-app-create', ['action' => 'create']));
+$form->setAttribute('action', $this->url('todo-app', ['action' => 'create']));
 $form->prepare();
 
 echo $this->form()->openTag($form);

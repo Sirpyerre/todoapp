@@ -33,16 +33,6 @@ class Module implements ConfigProviderInterface
                     $tableGateWay = $sm->get('TaskTableGateway');
                     return new TaskTable($tableGateWay);
                 }
-//                Model\Task::class => function ($container) {
-//                    $tableGateway = $container->get(Model\TaskTable::class);
-//                    return new Model\TaskTable($tableGateway);
-//                },
-//                Model\TaskTable::class => function ($container) {
-//                    $dbAdapter = $container->get(AdapterInterface::class);
-//                    $resultSetPrototype = new ResultSet();
-//                    $resultSetPrototype->setArrayObjectPrototype(new Model\Task());
-//                    return new TableGateway('task', $dbAdapter, null, $resultSetPrototype);
-//                }
             ]
         ];
     }

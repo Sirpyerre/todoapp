@@ -73,7 +73,9 @@ class ToDoController extends \Laminas\Mvc\Controller\AbstractActionController
 
     public function editAction()
     {
-
+        return [
+            'message' => 'Hello world',
+        ];
     }
 
     public function updateAction()
