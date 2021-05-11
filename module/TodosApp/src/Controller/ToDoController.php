@@ -47,7 +47,7 @@ class ToDoController extends \Laminas\Mvc\Controller\AbstractActionController
 
         $task->exchangeArray($form->getData());
         $this->table->saveTask($task);
-        return $this->redirect()->toRoute('todos-app-index');
+        return $this->redirect()->toRoute('todo-app', ['action' => 'index']);
     }
 
     public function storeAction()
@@ -65,7 +65,7 @@ class ToDoController extends \Laminas\Mvc\Controller\AbstractActionController
         try {
             $task = $this->table->getTask($id);
         } catch (\Exception $e) {
-            return $this->redirect()->toRoute('todos-app-index');
+            return $this->redirect()->toRoute('todo-app', ['action' => 'index']);
         }
 
         return new ViewModel(['task' => $task]);
@@ -73,14 +73,43 @@ class ToDoController extends \Laminas\Mvc\Controller\AbstractActionController
 
     public function editAction()
     {
-        return [
-            'message' => 'Hello world',
-        ];
-    }
+        $id = (int) $this->params()->fromRoute('id', 0);
 
-    public function updateAction()
-    {
+        if (0 === $id) {
+            return $this->redirect()->toRoute('todo-app-create', ['action' => 'create']);
+        }
 
+        try {
+            $task = $this->table->getTask($id);
+        } catch (\Exception $e) {
+            return $this->redirect()->toRoute('todo-app', ['action' => 'index']);
+        }
+
+        $form = new TaskForm();
+        $form->bind($task);
+        $form->get('submit')->setAttribute('value', 'Editar');
+
+        $request = $this->getRequest();
+        $viewData = ['id' => $id, 'form' => $form];
+
+        if (!$request->isPost()) {
+            return $viewData;
+        }
+
+        $form->setInputFilter($task->getInputFilter());
+        $form->setData($request->getPost());
+
+        if (!$form->isValid()) {
+            return $viewData;
+        }
+
+        try {
+            $this->table->saveTask($task);
+        } catch (Exception $e){
+            \error_log("error updating", $e->getMessage());
+        }
+
+        return $this->redirect()->toRoute('todo-app', ['action' => 'index']);
     }
 
     public function deleteAction()

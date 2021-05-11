@@ -5,12 +5,10 @@
 
 namespace TodosApp\Form;
 
-use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 class TaskForm extends Form
 {
-
     /**
      * TaskForm constructor.
      */
@@ -27,7 +25,7 @@ class TaskForm extends Form
             'name' => 'title',
             'type' => 'text',
             'options' => [
-                'label' => 'Titulo'
+                'label' => 'Título'
             ]
         ]);
 
@@ -38,33 +36,6 @@ class TaskForm extends Form
                 'label' => 'Descripción'
             ]
         ]);
-
-//        $this->add([
-//            'name' => 'creationDate',
-//            'type' => 'text',
-//            'options' => [
-//                'label' => 'Fecha de creación'
-//            ]
-//        ]);
-//
-//        $this->add([
-//            'name' => 'finishDate',
-//            'type' => 'text',
-//            'options' => [
-//                'label' => 'Fecha de finalización'
-//            ]
-//        ]);
-//
-//        $this->add([
-//            'name' => 'finish',
-//            'type' => Element\Checkbox::class,
-//            'options' => [
-//                'label' => 'Finalizada',
-//                'use_hidden_element' => true,
-//                'checked_value' => 'Yes',
-//                'unchecked_value' => 'Not',
-//            ],
-//        ]);
 
         $this->add([
            'name' => 'submit',

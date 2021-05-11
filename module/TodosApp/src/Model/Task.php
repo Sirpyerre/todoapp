@@ -34,6 +34,15 @@ class Task implements InputFilterAwareInterface
         $this->finished = !empty($data['finished']) ? $data['finished'] : 0;
     }
 
+    public function getArrayCopy()
+    {
+        return [
+            'id'     => $this->id,
+            'title' => $this->title,
+            'description'  => $this->description,
+        ];
+    }
+
     public function setInputFilter(InputFilterInterface $inputFilter)
     {
         throw new \DomainException(sprintf(
