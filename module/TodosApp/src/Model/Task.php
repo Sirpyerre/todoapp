@@ -34,7 +34,7 @@ class Task implements InputFilterAwareInterface
         $this->finished = !empty($data['finished']) ? $data['finished'] : 0;
     }
 
-    public function getArrayCopy()
+    public function getArrayCopy(): array
     {
         return [
             'id'     => $this->id,

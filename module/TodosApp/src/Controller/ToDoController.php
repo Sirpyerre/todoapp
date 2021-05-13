@@ -45,14 +45,10 @@ class ToDoController extends \Laminas\Mvc\Controller\AbstractActionController
             return ['form' => $form];
         }
 
+        $task->finished = 0;
         $task->exchangeArray($form->getData());
         $this->table->saveTask($task);
         return $this->redirect()->toRoute('todo-app', ['action' => 'index']);
-    }
-
-    public function storeAction()
-    {
-
     }
 
     public function showAction()
@@ -114,6 +110,42 @@ class ToDoController extends \Laminas\Mvc\Controller\AbstractActionController
 
     public function deleteAction()
     {
+        $id = (int) $this->params()->fromRoute('id', 0);
 
+        try {
+            $task = $this->table->getTask($id);
+        } catch (\Exception $e) {
+            return $this->redirect()->toRoute('todo-app', ['action' => 'index']);
+        }
+
+        try {
+            $this->table->deleteTask($task->id);
+        } catch (Exception $e){
+            \error_log("error updating", $e->getMessage());
+        }
+
+        return $this->redirect()->toRoute('todo-app', ['action' => 'index']);
+    }
+
+    public function finishedAction()
+    {
+        $id = (int) $this->params()->fromRoute('id', 0);
+
+        try {
+            $task = $this->table->getTask($id);
+        } catch (\Exception $e) {
+            return $this->redirect()->toRoute('todo-app', ['action' => 'index']);
+        }
+
+        $task->finished = 1;
+        $task->finishDate = new \DateTime();
+//        dd($task);
+        try {
+            $this->table->saveTask($task);
+        } catch (Exception $e){
+            \error_log("error updating", $e->getMessage());
+        }
+
+        return $this->redirect()->toRoute('todo-app', ['action' => 'show', 'id' => $id]);
     }
 }

@@ -12,7 +12,16 @@
             <?= $task->description ?>
         </p>
         <?php if ($task->finished === 0): ?>
-            <a href="#" class="btn btn-primary">Marcar como terminada</a>
+            <a href="<?= $this->url('todo-app', [
+                'action' => 'finished',
+                'id' => $task->id
+            ]) ?>" class="btn btn-primary">Marcar como terminada</a>
+        <?php else: ?>
+            <p>
+                <span class="badge badge-danger">Finished</span>
+            </p>
         <?php endif; ?>
+
+        <a href="<?= $this->url('todo-app') ?>" class="btn btn-secondary">Regresar</a>
     </div>
 </div>

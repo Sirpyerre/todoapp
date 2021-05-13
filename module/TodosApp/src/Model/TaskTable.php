@@ -45,8 +45,8 @@ class TaskTable
             'title' => $task->title,
             'description' => $task->description,
             'creation_date' => $now->format('Y-m-d H:i:s'),
-            'finish_date' => $task->finishDate,
-            'finished' => 0
+            'finish_date' => $task->finishDate ? $task->finishDate->format('Y-m-d H:i:s'): null,
+            'finished' => $task->finished
         ];
 
         $id = (int) $task->id;
