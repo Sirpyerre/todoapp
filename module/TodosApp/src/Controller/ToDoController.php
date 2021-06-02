@@ -101,7 +101,7 @@ class ToDoController extends \Laminas\Mvc\Controller\AbstractActionController
 
         try {
             $this->table->saveTask($task);
-        } catch (Exception $e){
+        } catch (\Exception $e){
             \error_log("error updating", $e->getMessage());
         }
 
@@ -120,7 +120,7 @@ class ToDoController extends \Laminas\Mvc\Controller\AbstractActionController
 
         try {
             $this->table->deleteTask($task->id);
-        } catch (Exception $e){
+        } catch (\Exception $e){
             \error_log("error updating", $e->getMessage());
         }
 
