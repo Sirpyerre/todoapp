@@ -139,10 +139,9 @@ class ToDoController extends \Laminas\Mvc\Controller\AbstractActionController
 
         $task->finished = 1;
         $task->finishDate = new \DateTime();
-//        dd($task);
         try {
             $this->table->saveTask($task);
-        } catch (Exception $e){
+        } catch (\Exception $e){
             \error_log("error updating", $e->getMessage());
         }
 
